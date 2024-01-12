@@ -94,6 +94,10 @@ function addTasks() {
         listItem.querySelector('input').addEventListener('change', function () {
             updateCompletionStatus(index, this.checked);
         });
+        
+        listItem.querySelector('button').addEventListener('click', function() {
+            deleteTask(index);
+        });
     
         taskList.appendChild(listItem);
     }
@@ -103,13 +107,17 @@ function addTasks() {
        function deleteTask(index) {
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
+        if (index >= 0 && index < tasks.length) {
+            tasks.splice(index, 1);
 
-        tasks.splice(index, 1);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
 
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-
-        loadTasks();
+            loadTasks();
+       } else {
+            console.error('invalid input');
        }
+       
+    }
 
        function updateCompletionStatus(index, completed) {
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
