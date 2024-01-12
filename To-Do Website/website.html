@@ -11,7 +11,14 @@
         <h1>Basic To-Do List</h1>
         <div>
             <input type="text" id="taskInput" placeholder="Enter a new Task to Complete:" >
-            <button onclick="addTask()">Add Task to List</button>
+            <input type ="date" id ="dueDateInput" placeholder="Enter Due Date for Task:">
+            <select id="categoryInput">
+                <option value="" disabled selected>Select a Category</option>
+                <option value="school">School Related</option>
+                <option value="work">Work</option>
+                <option value="personal">Personal Task</option>
+            </select>
+            <button onclick="addTasks()">Add your Task</button>
         </div>
         <ul id="taskList"></ul>
     </div>
