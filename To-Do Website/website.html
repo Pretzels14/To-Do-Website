@@ -4,21 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
+    <title>Personal To-Do Tracker</title>
 </head>
 <body>
     <div class="container">
-        <div>
-            <input type="text" id="taskInput" placeholder="Enter a new Task to Complete:" >
-            <input type ="date" id ="dueDateInput" placeholder="Enter Due Date for Task:">
-            <select id="categoryInput">
-                <option value="" disabled selected>Select a Category</option>
-                <option value="school">School Related</option>
-                <option value="work">Work</option>
-                <option value="personal">Personal Task</option>
-            </select>
-            <button onclick="addTasks()">Add your Task</button>
-        </div>
+        <h1>Basic To-Do List</h1>
+        <p id="description">Enter the following information: The task you wish to complete, the date your task is due, and what kind of category your task is (Work, Personal or School Related)</p>
+        <form id="taskForm"></form>
+            <div>
+                <input type="text" id="taskInput" placeholder="Enter a new Task to Complete:" required>
+                <input type ="date" id ="dueDateInput" placeholder="Enter Due Date for Task:" required>
+                <select id="categoryInput" required>
+                    <option value="" disabled selected>Select a Category</option>
+                    <option value="school">School Related</option>
+                    <option value="work">Work</option>
+                    <option value="personal">Personal Task</option>
+                </select>
+                <button onClick="addTasks()">Add your Task</button>
+            </div>
+        </form>
         <ul id="taskList"></ul>
     </div>
     <script src="app.js"></script>

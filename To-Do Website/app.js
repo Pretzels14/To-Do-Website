@@ -11,6 +11,9 @@
 // Create a function that allows user to add tasks to be displayed
 
 
+
+
+
 function addTasks() {
     const inputTask = document.getElementById('taskInput');
     const dueDateInput = document.getElementById('dueDateInput');
@@ -39,15 +42,16 @@ function addTasks() {
         // Have to update tasks in the users local storage
         localStorage.setItem('tasks', JSON.stringify(tasks));
 
-        loadTasks();
 
-        // Now, add our new task to the object model
-        addTaskToDOM(newTask, tasks.length - 1);
+        loadTasks();
 
         inputTask.value = '';
         dueDateInput.value = '';
         categoryInput.value = '';
+    } else {
+        alert('Make sure to enter a Task!');
     }
+}
 
 
     // Load tasks from the local storage and display them to the user on the screen
@@ -73,6 +77,7 @@ function addTasks() {
             }
         }
     }
+
     
 
        // have to be able to add a task to the document model
@@ -84,7 +89,7 @@ function addTasks() {
         const listItem = document.createElement('li');
     
         listItem.innerHTML = `
-            <input type="checkbox" id="task${index}" ${task.completed ? 'checked' : ''}>
+            <input type="checkbox" id="task${index}" ${task.completed ? 'checked' : '' }>
             <label for="task${index}" ${task.completed ? 'class="completed"' : ''}>${task.text}</label>
             <span class="due-date">${task.dueDate}</span>
             <span class="category">${task.category}</span>
@@ -98,6 +103,7 @@ function addTasks() {
         listItem.querySelector('button').addEventListener('click', function() {
             deleteTask(index);
         });
+
     
         taskList.appendChild(listItem);
     }
@@ -127,6 +133,5 @@ function addTasks() {
 
         localStorage.setItem('tasks', JSON.stringify(tasks));
 
-        loadTasks();
-       }
+       
 }

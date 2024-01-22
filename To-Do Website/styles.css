@@ -1,33 +1,56 @@
 body {
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+    background-color: darkslategray;
 }
 
-.container {
+h1 {
+    color:chartreuse;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 30px;
     text-align: center;
+    padding-top: 10vh;
+    height: 10vh;
+
+
+}
+.container {
+    font-family:'Times New Roman', Times, serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 75vh
 }
 
+p {
+    padding-top: 0;
+    height: auto;
+    font-family: 'Courier New', Courier, monospace;
+    color:aqua;
+    align-items: center;
+    justify-content: center;
+}
 input, select, button {
-    margin: 5px;
+    font-size: 14px;
+    margin: 50px;
 }
 
-/* Style due date and category */
+#taskList {
+    color:aqua;
+    list-style: none;
+}
+
 .due-date {
     margin-right: 10px;
     font-style: italic;
-    color: #888;
+    color:darkgray;
 }
 
 .category {
     margin-right: 10px;
     padding: 2px 5px;
-    background-color: #f2f2f2;
+    background-color:aliceblue;
     border-radius: 3px;
-    font-size: 12px;
+    font-size: 14px;
     color: #333;
 }
 
