@@ -5,7 +5,6 @@
  the body of text, the due date and whether or not the user has completed the task or not
  */
 
- // Will Update website.html to allow the user to add a due date and select different types of categories (ie personal or work related items)
 
 
 // Create a function that allows user to add tasks to be displayed
@@ -14,49 +13,50 @@
 
 
 
-function addTasks() {
-    const inputTask = document.getElementById('taskInput');
+function addTask() {
+    const taskInput = document.getElementById('taskInput');
     const dueDateInput = document.getElementById('dueDateInput');
     const categoryInput = document.getElementById('categoryInput');
 
+    const taskText = taskInput.value.trim();
+    const dueDate = new Date(dueDateInput.value);
 
-    const taskText = inputTask.value.trim();
-
-    if (inputTask !== '') {
-
-        // This will retrieve tasks from the websites local storage or utilize an empty array if there are none
-        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-
-        // Create a new task with all of the information above. set our completed statement to false, as the user has not yet completed the task they created
-
-        const newTask = {
-            text: taskText,
-            dueDate: dueDateInput.value,
-            category: categoryInput.value,
-            completed: false
-        };
-
-        // Add our new task to the task array
-        tasks.push(newTask);
-
-        // Have to update tasks in the users local storage
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-
-
-        loadTasks();
-
-        inputTask.value = '';
-        dueDateInput.value = '';
-        categoryInput.value = '';
-    } else {
-        alert('Make sure to enter a Task!');
+    // Check to make sure the name isn't blank, if it is, display a warning message and exit.
+    if (taskText === '') {
+        displayError('Task name cannot be blank. Please enter a task name before adding.');
+        return;
     }
+
+    // Ensures the 'dueDate' is a date in the future
+    if (isNaN(dueDate) || dueDate <= new Date()) {
+        displayError('Due date must be in the future. Please select a valid due date.');
+        return;
+    }
+
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+    const newTask = {
+        text: taskText,
+        dueDate: dueDateInput.value,
+        category: categoryInput.value,
+        completed: false
+    };
+
+    tasks.push(newTask);
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
+    // Call loadTasks after the task is added to local storage
+    loadTasks();
+
+    taskInput.value = '';
+    dueDateInput.value = '';
+    categoryInput.value = '';
 }
 
 
     // Load tasks from the local storage and display them to the user on the screen
 
-    // Maybe allow the user to delete a task so it can be gone from memory?
 
     function loadTasks() {
         const taskList = document.getElementById('taskList');
@@ -116,7 +116,7 @@ function addTasks() {
         if (index >= 0 && index < tasks.length) {
             tasks.splice(index, 1);
 
-            localStorage.setItem('tasks', JSON.stringify(tasks));
+            localStorages.setItem('tasks', JSON.stringify(tasks));
 
             loadTasks();
        } else {
